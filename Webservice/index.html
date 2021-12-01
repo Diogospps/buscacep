@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webservice</title>
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css">
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACPEwhZkE4YRjktc9azq2mBJOb9Z_7_8c">
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(-34.397, 150.644),
+            zoom: 8,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            mapOptions);
+        }
+    </script>
+    <style type="text/css">
+        html { height: 100% }
+        body { height: 100%; margin: 0; padding: 0 }
+        #map_canvas { height: 100% }
+      </style>
+
+</head>
+<body onload="initialize()"> 
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <h1>DIGITE O CEP DESEJADO</h1>
+
+            <form action="">
+                <div class="form-group">
+                        <label for="cep">CEP</label><br>
+                         <input id="cep" type="text" maxlength="11"><br>
+                </div>
+                <div class="form-group">
+                        <label for="bairo">BAIRRO</label><br>
+                        <input disabled id="bairo" type="text"><br>
+                </div>
+                <div class="form-group">
+                        <label for="ddd">DDD</label><br>
+                        <input disabled id="ddd" type="text"><br>
+                </div>
+                <div class="form-group">
+                        <label for="ibge">IBGE</label><br>
+                        <input disabled id="ibge" type="text"><br>
+                </div>
+                <div class="form-group">
+                        <label for="uf">ESTADO</label><br>
+                        <input  disabled id="uf" type="text"><br>
+                </div>
+                <div class="form-group">
+                        <label for="localidade">CIDADE</label><br>
+                        <input disabled id="localidae" type="text"><br>
+                </div>
+                <div class="form-group">
+                        <label for="logradouro">RUA</label><br>
+                        <input disabled id="logradouro" type="text"><br>
+                </div>
+                        <br>
+                <div class="form-group">
+                        <input onclick="enviar()" type="button" value="Enviar">
+                </div>
+                <br>
+                
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+    <script>
+        const options ={
+            method: "GET",
+            mode: "cors",
+            caches: "default"
+        }
+
+        const cep = document.getElementById("cep")
+        cep.addEventListener("blur", (e) =>{
+            let CEP = document.getElementById("cep").value;
+            console.log(CEP)
+            let search = cep.value.replace("-", "")
+            fetch(`https://viacep.com.br/ws/${search}/json/`, options).then((Response) => {
+                Response.json().then(data => {
+                    console.log(data)
+                    document.getElementById("bairro").value = data.bairro;
+                    document.getElementById("ddd").value = data.ddd;
+                    document.getElementById("ibge").value = data.ibge;
+                    document.getElementById("uf").value = data.uf;
+                    document.getElementById("localidade").value = data.localidade;
+                    document.getElementById("logradouro").value = data.logradouro;
+
+                })
+            })
+            
+        })
+        
+        function enviar(){
+            let bairo = document.getElementById("bairro").value;
+            let ddd = document.getElementById("ddd").value;
+            let ibge = document.getElementById("ibge").value;
+            let uf = document.getElementById("uf").value;
+            let localidade = document.getElementById("localidade").value;
+            let logradouro = document.getElementById("logradouro").value;
+
+            let json ={
+                "bairro": bairro,
+                "ddd": ddd,
+                "ibge": ibge,
+                "uf": uf,
+                "localidade": localidade,
+                "logradouro": logradouro
+            }
+            
+            console.log(json)
+
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+            });
+        }
+
+        
+    </script>
+
+
+</body>
+
+</html>
