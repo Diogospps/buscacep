@@ -1,0 +1,73 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-image: url(../Assets/Background.png);
+}
+
+.titulo {
+  font: 38px "Gilroy", sans-serif;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.titulo img {
+  margin-right: 10px;
+  max-width: 48px;
+  max-height: 48px;
+  filter: invert(99%) sepia(99%) saturate(0%) hue-rotate(95deg) brightness(108%)
+    contrast(101%);
+  transform: rotate(90deg);
+}
+
+.conteudo {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  border-radius: 80px 80px 0px 0px;
+  box-shadow: 0px 0px 50px #00000033;
+  font: 10px "Gilroy", sans-serif;
+}
+
+.form-1 {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.form-row {
+  display: flex;
+  padding: 10px;
+}
+
+.form-input {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  width: 100%;
+}
+
+.form-button {
+  margin: 10px;
+  padding-top: 5px;
+}
+
+.form-button button {
+  height: 100%;
+  width: 100px;
+}
