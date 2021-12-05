@@ -5,11 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Busca CEP</title>
-
-    <script
-      type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACPEwhZkE4YRjktc9azq2mBJOb9Z_7_8c"
-    ></script>
     <link
       rel="stylesheet"
       href="https://cdn.rawgit.com/mfd/09b70eb47474836f25a21660282ce0fd/raw/e06a670afcb2b861ed2ac4a1ef752d062ef6b46b/Gilroy.css"
@@ -22,20 +17,6 @@
     />
 
     <link rel="stylesheet" href="./css/styles.css" />
-
-    <script type="text/javascript">
-      function initialize() {
-        var mapOptions = {
-          center: new google.maps.LatLng(-34.397, 150.644),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP,
-        };
-        var map = new google.maps.Map(
-          document.getElementById("map_canvas"),
-          mapOptions
-        );
-      }
-    </script>
   </head>
   <body onload="initialize()">
     <div class="caixa">
@@ -118,9 +99,11 @@
               </div>
             </div>
           </form>
-          <div id="map_canvas" class="mapa-google"></div>
+          <img
+            class="mapa-img"
+            src="./Assets/photo-1451988336904-b1a6e8846746.jpg"
+          />
         </div>
-        <!-- style="width: 100%; height: 100%" -->
       </div>
     </div>
 
@@ -168,13 +151,6 @@
         };
 
         console.log(json);
-      }
-
-      function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 8,
-        });
       }
     </script>
   </body>
